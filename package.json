@@ -1,0 +1,26 @@
+{
+  "name": "team_treehouse_project_8",
+  "version": "1.0.0",
+  "description": "SQL Library Manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzunino/team_treehouse_proejct_8.git"
+  },
+  "author": "Kyle Zunino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kzunino/team_treehouse_proejct_8/issues"
+  },
+  "homepage": "https://github.com/kzunino/team_treehouse_proejct_8#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4",
+    "sequelize": "^5.13.0",
+    "sqlite3": "^4.0.9"
+  }
+}

@@ -1,11 +1,14 @@
 const db = require('./db');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const { Book } = db.models;
 const { Op } = db.Sequelize;        //used to extract operator property from db.Sequelize.
 
 app.set('view engine', 'pug');
 app.use('/static', express.static('public'));     //serves the static folders in public folder
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
 const bookRoutes = require('./routes/books');
 app.use(bookRoutes);

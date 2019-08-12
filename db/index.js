@@ -17,6 +17,7 @@ const db = {
   models: {},
 };
 
-db.models.Movie = require('./models/book.js')(sequelize);
+//imports new model
+db.models.Book = require('./models/book.js')(sequelize);
 
 module.exports = db;

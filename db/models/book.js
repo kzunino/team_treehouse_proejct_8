@@ -1,3 +1,5 @@
+'use strict';
+
 const Sequelize = require('sequelize');
 
 
@@ -47,8 +49,9 @@ module.exports = (sequelize) => {
       },
       notNull:{
         msg: 'Please provide a value for "author"',
-      }
-    }, {
+      },
+    },
+  }, {
       paranoid: true,
       timestamps: true,
       freezeTableName: false,

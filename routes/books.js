@@ -31,8 +31,8 @@ router.post('/books/new', async (req, res, next) => {
        author,
        genre,
        year
-     });
-    res.redirect('/books');
+   })
+    .then(() => res.redirect('/books'));
   } catch(err){
     return next(err);
   }

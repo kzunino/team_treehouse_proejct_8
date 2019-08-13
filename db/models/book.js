@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
       },
     },
   }, {
-      paranoid: true,
+      paranoid: true,     //enables soft deletes
       timestamps: true,
       freezeTableName: false,
       modelName: 'Books',

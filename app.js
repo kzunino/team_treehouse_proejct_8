@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
 });
 
 
-
 (async () =>{
 
   await db.sequelize.sync({ force: true })  //drops table and recreates it when app restarted

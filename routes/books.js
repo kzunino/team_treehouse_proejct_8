@@ -31,7 +31,8 @@ router.post("/books/new", async (req, res, next) => {
       author,
       genre,
       year
-    }).then(() => res.redirect("/books"));
+    })
+    res.redirect("/books");
   } catch (err) {
     return next(err);
   }
@@ -69,11 +70,11 @@ router.post("/books/detail/:id", async (req, res, next) => {
   }
 });
 
-router.post("/books/detail/:id", async (req, res, next) => {
+router.post("/books/:id/delete", async (req, res, next) => {
   try {
     const book = await Book.findByPk(req.params.id);
     if (book) {
-      return book.destroy();
+       book.destroy();
     } else {
       return next(err);
     }

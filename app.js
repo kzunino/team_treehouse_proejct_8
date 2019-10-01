@@ -30,7 +30,7 @@ app.use((req, res, next ) => {                      //creates error object for n
 app.use(( err, req, res, next ) => {
   res.locals.error = err;
   console.error(err.message);
-  res.render('error');
+  res.render('page_not_found');
 });
 
 app.listen(3000, () => {

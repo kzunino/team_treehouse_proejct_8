@@ -2,8 +2,9 @@ extends layout
 
 block content
   body
-    h1= title
+    h1 New Book
     form(method="post" action="")
+      include form-error
         p
             label(for='title') Title
             input#title(name='title', type='text')

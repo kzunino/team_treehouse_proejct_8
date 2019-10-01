@@ -10,7 +10,7 @@ router.get("/books", async (req, res, next) => {
     });
     res.render("index", {
       books,
-      title: "Books"
+      title: "Library List"
     });
   } catch (error) {
     return next(error);
@@ -18,9 +18,7 @@ router.get("/books", async (req, res, next) => {
 });
 
 router.get("/books/new", (req, res) => {
-  res.render("newBook", {
-    title: "New Book"
-  });
+  res.render("newBook");
 });
 
 router.post("/books/new", async (req, res, next) => {
@@ -34,7 +32,11 @@ router.post("/books/new", async (req, res, next) => {
     })
     res.redirect("/books");
   } catch (err) {
-    return next(err);
+    if (err.name === "SequelizeValidationError"){   //uses custom sql error message as li error in pug
+      res.render("newBook", {
+        errors: err.errors
+      });
+    };
   }
 });
 
@@ -43,6 +45,9 @@ router.get("/books/detail/:id", async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
       res.render("updateBook", { book });
+    } else {
+      const err = new Error('Book does not exist');
+      res.render('error');
     }
   } catch (error) {
     return next(error);
@@ -61,12 +66,7 @@ router.post("/books/detail/:id", async (req, res, next) => {
       return next(err);
     }
   } catch (error) {
-    if (error.name === "SequelizeValidationError") {
-      const errors = error.errors.map(err => err.message);
-      console.error("Validation errors: ", errors);
-    } else {
-      throw error;
-    }
+    return next(error)
   }
 });
 
@@ -80,13 +80,8 @@ router.post("/books/:id/delete", async (req, res, next) => {
     }
     res.redirect("/books");
   } catch (error) {
-    if (error.name === "SequelizeValidationError") {
-      const errors = error.errors.map(err => err.message);
-      console.error("Validation errors: ", errors);
-    } else {
-      throw error;
+    return next(error)
     }
-  }
 });
 
 module.exports = router;

@@ -14,7 +14,9 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: 'Please provide a value for "title"',
+        }
       },
       notNull:{
         msg: 'Please provide a value for "title"',
@@ -24,7 +26,9 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: 'Please provide a value for "author"',
+        }
       },
       notNull:{
         msg: 'Please provide a value for "author"',
@@ -34,7 +38,9 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: 'Please provide a value for "genre"',
+        }
       },
       notNull:{
         msg: 'Please provide a value for "genre"',
@@ -44,14 +50,16 @@ module.exports = (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: 'Please provide a value for "year"',
+        }
       },
       notNull:{
         msg: 'Please provide a value for "author"',
       },
     },
   }, {
-      paranoid: true,     //enables soft deletes
+      //paranoid: true,     //enables soft deletes
       timestamps: true,
       freezeTableName: false,
       modelName: 'Books',

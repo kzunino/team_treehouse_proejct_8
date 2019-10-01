@@ -20,7 +20,7 @@ const createElement = (elementName, setClass, domNode, value, text) => {  //refa
 };
 
 const notFoundDiv = createElement('div', 'notFound', body, undefined, undefined);
-const notFoundText = createElement('h1', undefined, notFoundDiv, undefined, 'No match for book in database. Please try again.');
+const notFoundText = createElement('h1', undefined, notFoundDiv, undefined, 'No match for this book in the database. Please try again.');
 notFoundDiv.style.display = 'none';
 
 // ********** showPage Function *********
@@ -28,7 +28,7 @@ notFoundDiv.style.display = 'none';
 const showPage = (bookList, page) => {
   let lastListItem = (page * 10) - 1;                    //stores the last item's index value
   let firstListItem = (lastListItem - 9);               //stores the first item's index value
-  for (var i = 0; i < bookList.length ; i += 1) {   //itterates through the student list
+  for (var i = 0; i < bookList.length ; i += 1) {   //itterates through the book list
     if (i >= firstListItem && i <= lastListItem){      //conditional statement to iterate through list segments (note to self don't use bookLsit[i]) and hide or display list items
       bookList[i].style.display = '';
     }else{
@@ -37,7 +37,7 @@ const showPage = (bookList, page) => {
   }
 };
 
-showPage(bookList, 1); //shows first page of student list when page is first opened
+showPage(bookList, 1); //shows first page of book list when page is first opened
 
 // ******** Creating and appending pages *****************
 
@@ -79,10 +79,9 @@ appendPageLinks(pages, bookList);
 const searchFunctionality = () => {                     //This function works for both search listeners. DRY principles at work
   const searchText = searchInput.value.toUpperCase();
   resultList = [];                                    // stores results in empty array
-  searchCount = 0;                                  //counts results from loop
-    for (var i = 0; i < bookList.length; i ++){                      // loop through student list
+  searchCount = 0;                                 //counts results from loop
+    for (var i = 0; i < bookList.length; i ++){                      // loop through book list
         bookList[i].style.display = 'none';
-        //let content = bookList[i].getElementsByTagName('td');             // should target each list item and their h3 tag with name
         if (bookList[i].children[0].textContent.toUpperCase().indexOf(searchText) > -1
             || bookList[i].children[1].textContent.toUpperCase().indexOf(searchText) > -1
             || bookList[i].children[2].textContent.toUpperCase().indexOf(searchText) > -1

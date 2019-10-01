@@ -3,6 +3,8 @@ const router = express.Router();
 const db = require("../db");
 const { Book } = db.models;
 
+/* Gets books and orders them by author */
+
 router.get("/books", async (req, res, next) => {
   try {
     const books = await Book.findAll({
@@ -17,9 +19,13 @@ router.get("/books", async (req, res, next) => {
   }
 });
 
+/* Renders the newBook route */
+
 router.get("/books/new", (req, res) => {
   res.render("newBook");
 });
+
+/* takes values from input fields and creates new book with objects */
 
 router.post("/books/new", async (req, res, next) => {
   try {
@@ -40,6 +46,10 @@ router.post("/books/new", async (req, res, next) => {
   }
 });
 
+/* Finds book by id
+  if it exists it renders updateBook with book info
+ */
+
 router.get("/books/detail/:id", async (req, res, next) => {
   try {
     const book = await Book.findByPk(req.params.id);
@@ -53,6 +63,10 @@ router.get("/books/detail/:id", async (req, res, next) => {
     return next(error);
   }
 });
+
+/* Updates book details by id
+  redirects to homepage after
+ */
 
 router.post("/books/detail/:id", async (req, res, next) => {
   try {
@@ -69,6 +83,8 @@ router.post("/books/detail/:id", async (req, res, next) => {
     return next(error)
   }
 });
+
+/* deletes book by the book id */
 
 router.post("/books/:id/delete", async (req, res, next) => {
   try {

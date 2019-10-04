@@ -1,6 +1,5 @@
 const tbody = document.querySelector('tbody');
 const bookList = document.querySelectorAll('tr.books');
-const table = document.querySelector('table');
 const body = document.querySelector('body');
 const pages = Math.ceil(bookList.length/10);
 const searchInput = document.querySelector('input');

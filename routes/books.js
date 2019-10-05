@@ -75,12 +75,14 @@ router.post("/books/detail/:id", async (req, res, next) => {
       const { title, author, genre, year } = req.body;
       await book.update({ title, author, genre, year });
       res.redirect("/books");
-    } else {
-      const err = new Error("Failed to update...");
-      return next(err);
     }
-  } catch (error) {
-    return next(error)
+  } catch (err) {
+    if (err.name === "SequelizeValidationError"){   //uses custom sql error message as li error in pug
+      const book = await Book.findByPk(req.params.id);
+      if (book) {
+        res.render("updateBook", { book, errors:err.errors });     //re-renders book details with error
+      };
+    };
   }
 });
 
